@@ -1,14 +1,13 @@
-import './App.css'
+import AdBanner from './components/AdBanner';
+import CTAButton from './components/CTAButton';
 
 function App() {
-
   return (
-    <>
-      <h1 class="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-    </>
-  )
+    <div>
+      <AdBanner />
+      <CTAButton />
+    </div>
+  );
 }
 
-export default App
+export default App;
