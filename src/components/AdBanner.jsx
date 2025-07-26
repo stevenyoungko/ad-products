@@ -4,9 +4,40 @@ import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import productsData from '../mock/products.json';
 
-const AdBanner = () => {
+const AdBanner = ({ size = '320x50' }) => {
   const [products] = useState(productsData);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  if (size === '300x250') {
+    return (
+      <div className="w-full h-[calc(100%-48px)]">
+        <Swiper
+          modules={[Autoplay]}
+          spaceBetween={0}
+          slidesPerView={1}
+          loop={true}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+          className="w-full h-full"
+        >
+          {products.map((product, index) => (
+            <SwiperSlide key={product.sku} className="h-full">
+              <div className="flex items-center justify-center h-full">
+                <img
+                  src={product.img}
+                  alt={`Product ${index + 1}`}
+                  className="w-full h-full object-contain rounded-sm"
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    );
+  }
 
   return (
     <div className="flex items-center h-full mr-20">
