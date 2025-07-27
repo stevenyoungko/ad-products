@@ -62,6 +62,10 @@ const AdBanner = ({ size = '320x50' }) => {
         loop={true}
         autoplay={false}
         onSwiper={(swiper) => { swiperRef.current = swiper; }}
+        onSlideChange={(swiper) => {
+          const firstVisibleIndex = swiper.realIndex;
+          setActiveIndex(firstVisibleIndex);
+        }}
         className="w-full h-full"
       >
         {products.map((product, index) => (
