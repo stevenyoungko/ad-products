@@ -67,7 +67,8 @@ const AdBanner = ({ size = '320x50' }) => {
                 <img
                   src={product.img}
                   alt={`Product ${index + 1}`}
-                  className="w-full h-full object-contain rounded-sm"
+                  className="w-full h-full object-contain rounded-sm cursor-pointer hover:opacity-80 transition-opacity"
+                  onClick={() => window.open(product.url, '_blank', 'noopener,noreferrer')}
                 />
               </div>
             </SwiperSlide>
