@@ -8,11 +8,10 @@ function App() {
   useEffect(() => {
     const checkViewport = () => {
       const width = window.innerWidth;
-      const height = window.innerHeight;
       
-      if (width >= 160 && height >= 600) {
+      if (width >= 1024) {
         setAdSize('160x600');
-      } else if (width >= 300 && height >= 250) {
+      } else if (width >= 600 && width < 1024) {
         setAdSize('300x250');
       } else {
         setAdSize('320x50');
