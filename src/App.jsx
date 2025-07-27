@@ -31,12 +31,15 @@ function App() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className={containerStyles[adSize]}>
+    <main className="flex items-center justify-center min-h-screen" role="main">
+      <aside 
+        className={containerStyles[adSize]}
+        role="complementary"
+      >
         <AdBanner size={adSize} />
         <CTAButton size={adSize} />
-      </div>
-    </div>
+      </aside>
+    </main>
   );
 }
 

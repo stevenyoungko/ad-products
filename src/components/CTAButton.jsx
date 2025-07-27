@@ -39,13 +39,13 @@ const CTAButton = ({ size = '320x50' }) => {
       />
       {config.showText && (
         config.showButton ? (
-          <button className={config.content}>
+          <button className={config.content} type='button'>
             <span>{config.text}</span>
           </button>
         ) : (
-          <div className={config.content}>
+          <h3 className={config.content}>
             {config.text}
-          </div>
+          </h3>
         )
       )}
     </div>
