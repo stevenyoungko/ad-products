@@ -2,6 +2,12 @@ import { useState, useEffect } from 'react';
 import AdBanner from './components/AdBanner';
 import CTAButton from './components/CTAButton';
 
+const containerStyles = {
+  '320x50': 'relative w-[320px] h-[50px] bg-white border border-gray-200 overflow-hidden',
+  '300x250': 'relative w-[300px] h-[250px] bg-white border border-gray-200 overflow-hidden',
+  '160x600': 'relative w-[160px] h-[600px] bg-white border border-gray-200 overflow-hidden'
+};
+
 function App() {
   const [adSize, setAdSize] = useState('320x50');
 
@@ -23,12 +29,6 @@ function App() {
 
     return () => window.removeEventListener('resize', checkViewport);
   }, []);
-
-  const containerStyles = {
-    '320x50': 'relative w-[320px] h-[50px] bg-white border border-gray-200 overflow-hidden',
-    '300x250': 'relative w-[300px] h-[250px] bg-white border border-gray-200 overflow-hidden',
-    '160x600': 'relative w-[160px] h-[600px] bg-white border border-gray-200 overflow-hidden'
-  };
 
   return (
     <div className="flex items-center justify-center min-h-screen">
