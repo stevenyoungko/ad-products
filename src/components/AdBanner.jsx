@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import productsData from '../mock/products.json';
 
@@ -16,6 +15,7 @@ const swiperConfig = {
     slidesPerView: 1,
     direction: 'horizontal',
     spaceBetween: 0,
+    slidesPerGroup: 1,
     containerClassName: 'w-full h-[calc(100%-48px)]',
   },
   '320x50': {
@@ -55,7 +55,6 @@ const AdBanner = ({ size = '320x50' }) => {
   return (
     <div className={config.containerClassName}>
       <Swiper
-        modules={[Autoplay]}
         spaceBetween={config.spaceBetween}
         slidesPerView={config.slidesPerView}
         direction={config.direction}
