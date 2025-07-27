@@ -1,6 +1,21 @@
 import React from 'react';
 
 const CTAButton = ({ size = '320x50' }) => {
+  if (size === '160x600') {
+    return (
+      <div className="absolute bottom-0 left-0 right-0 h-12 flex items-center justify-between bg-white border-t border-gray-200 px-4">
+        <img 
+          src="https://www.appier.com/hubfs/Appier%20Website%20Images/Logos/appier-logo.svg" 
+          alt="Appier" 
+          className="h-6 w-auto"
+        />
+        <button className="bg-[#0074e9] hover:bg-[#0056b3] text-white text-xs px-2 py-1 rounded flex items-center gap-1">
+          <span>Buy Me</span>
+        </button>
+      </div>
+    );
+  }
+
   if (size === '300x250') {
     return (
       <div className="absolute bottom-0 left-0 right-0 h-12 flex items-center justify-center bg-white border-t border-gray-200 gap-2 px-4">

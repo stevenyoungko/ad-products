@@ -8,6 +8,40 @@ const AdBanner = ({ size = '320x50' }) => {
   const [products] = useState(productsData);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  if (size === '160x600') {
+    return (
+      <div className="w-full h-[calc(100%-48px)]">
+        <Swiper
+          modules={[Autoplay]}
+          spaceBetween={0}
+          slidesPerView={3}
+          direction="vertical"
+          loop={true}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+          className="w-full h-full"
+        >
+          {products.map((product, index) => (
+            <SwiperSlide key={product.sku} className="h-full">
+              <div className={`flex items-center justify-center h-full border ${
+                activeIndex === index ? 'border-blue-500' : 'border-gray-200'
+              }`}>
+                <img
+                  src={product.img}
+                  alt={`Product ${index + 1}`}
+                  className="w-full h-full object-contain rounded-sm"
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    );
+  }
+
   if (size === '300x250') {
     return (
       <div className="w-full h-[calc(100%-48px)]">
