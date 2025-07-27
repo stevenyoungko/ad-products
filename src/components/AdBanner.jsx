@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -31,6 +31,26 @@ const AdBanner = ({ size = '320x50' }) => {
   const [products] = useState(productsData);
   const [activeIndex, setActiveIndex] = useState(0);
   const config = swiperConfig[size] || swiperConfig['320x50'];
+  const swiperRef = useRef(null);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % products.length);
+    }, 3000);
+    
+    return () => clearInterval(timer);
+  }, [products.length]);
+
+  useEffect(() => {
+    if (swiperRef.current) {
+      const { slidesPerView } = config;
+      const page = Math.floor(activeIndex / slidesPerView);
+      const slideToIndex = page * slidesPerView;
+      if (swiperRef.current.realIndex !== slideToIndex) {
+        swiperRef.current.slideToLoop(slideToIndex);
+      }
+    }
+  }, [activeIndex, config]);
 
   return (
     <div className={config.containerClassName}>
@@ -41,11 +61,8 @@ const AdBanner = ({ size = '320x50' }) => {
         direction={config.direction}
         slidesPerGroup={config.slidesPerGroup}
         loop={true}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-        }}
-        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+        autoplay={false}
+        onSwiper={(swiper) => { swiperRef.current = swiper; }}
         className="w-full h-full"
       >
         {products.map((product, index) => (
