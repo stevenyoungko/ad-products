@@ -9,6 +9,7 @@ const swiperConfig = {
     slidesPerView: 3,
     direction: 'vertical',
     spaceBetween: 2,
+    slidesPerGroup: 3,
     containerClassName: 'w-full h-[calc(100%-48px)]',
   },
   '300x250': {
@@ -21,6 +22,7 @@ const swiperConfig = {
     slidesPerView: 5,
     direction: 'horizontal',
     spaceBetween: 2,
+    slidesPerGroup: 5,
     containerClassName: 'flex items-center h-full mr-20',
   },
 };
@@ -37,6 +39,7 @@ const AdBanner = ({ size = '320x50' }) => {
         spaceBetween={config.spaceBetween}
         slidesPerView={config.slidesPerView}
         direction={config.direction}
+        slidesPerGroup={config.slidesPerGroup}
         loop={true}
         autoplay={{
           delay: 3000,
