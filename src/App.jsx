@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import AdBanner from './components/AdBanner';
 import CTAButton from './components/CTAButton';
+import productsData from './mock/products.json';
 
 const containerStyles = {
   '320x50': 'relative w-[320px] h-[50px] bg-white border border-gray-200 overflow-hidden',
@@ -10,6 +11,8 @@ const containerStyles = {
 
 function App() {
   const [adSize, setAdSize] = useState('320x50');
+  const [products] = useState(productsData);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const checkViewport = () => {
@@ -30,13 +33,25 @@ function App() {
     return () => window.removeEventListener('resize', checkViewport);
   }, []);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % products.length);
+    }, 3000);
+    
+    return () => clearInterval(timer);
+  }, [products.length]);
+
   return (
     <main className="flex items-center justify-center min-h-screen" role="main">
       <aside 
         className={containerStyles[adSize]}
         role="complementary"
       >
-        <AdBanner size={adSize} />
+        <AdBanner 
+          size={adSize} 
+          activeIndex={activeIndex}
+          products={products}
+        />
         <CTAButton size={adSize} />
       </aside>
     </main>

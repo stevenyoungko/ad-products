@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import productsData from '../mock/products.json';
 
 const swiperConfig = {
   '160x600': {
@@ -27,19 +26,9 @@ const swiperConfig = {
   },
 };
 
-const AdBanner = ({ size = '320x50' }) => {
-  const [products] = useState(productsData);
-  const [activeIndex, setActiveIndex] = useState(0);
+const AdBanner = ({ size = '320x50', activeIndex, products }) => {
   const config = swiperConfig[size] || swiperConfig['320x50'];
   const swiperRef = useRef(null);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % products.length);
-    }, 3000);
-    
-    return () => clearInterval(timer);
-  }, [products.length]);
 
   useEffect(() => {
     if (swiperRef.current) {
@@ -61,11 +50,7 @@ const AdBanner = ({ size = '320x50' }) => {
         slidesPerGroup={config.slidesPerGroup}
         loop={true}
         autoplay={false}
-        onSwiper={(swiper) => { swiperRef.current = swiper; }}
-        onSlideChange={(swiper) => {
-          const firstVisibleIndex = swiper.realIndex;
-          setActiveIndex(firstVisibleIndex);
-        }}
+        onSwiper={(swiper) => { swiperRef.current = swiper }}
         className="w-full h-full"
       >
         {products.map((product, index) => (
